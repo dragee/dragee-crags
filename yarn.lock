@@ -2794,6 +2794,11 @@ des.js@^1.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
 
+desandro-get-style-property@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/desandro-get-style-property/-/desandro-get-style-property-1.0.4.tgz#f5842c21ea34b63abcf69bef35aac956e1c57f79"
+  integrity sha1-9YQsIeo0tjq89pvvNarJVuHFf3k=
+
 destroy@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
@@ -2916,6 +2921,13 @@ dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+
+dragee@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/dragee/-/dragee-1.0.3.tgz#e9186c12895050a77379c5e3316d8e09a9c0c492"
+  integrity sha512-TdvVZ2pw36dmb4TTe0zk/6gwCh1CGLfYBl8MOvNlUuFSehk5Q/TztOKtAM2puPtbD+nS25A9xNADvxwE8g7atg==
+  dependencies:
+    desandro-get-style-property "^1.0.4"
 
 duplexer@^0.1.1:
   version "0.1.1"
