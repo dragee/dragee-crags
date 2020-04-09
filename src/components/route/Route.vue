@@ -16,7 +16,6 @@
 
 <script>
 const pointSize = 10
-import { Point as DrageePoint } from 'dragee'
 import Point from './Point.vue'
 import Vue from 'vue'
 
@@ -91,8 +90,10 @@ export default {
   },
   computed: {
     path() {
+      if(this.points.length == 2) {
+        return `M ${this.points[0].x+pointSize},${this.points[0].y+pointSize} L${this.points[1].x+pointSize},${this.points[1].y+pointSize}`
 
-      if(this.points.length > 2) {
+      } else if(this.points.length > 2) {
         const d = this.points.map((p) => [p.x+pointSize, p.y+pointSize]).reduce((acc, point, i, a) => i === 0
           // if first point
           ? `M ${point[0]},${point[1]}`
@@ -107,10 +108,16 @@ export default {
   },
   methods: {
     addPoint(event) {
-      this.points.push(new DrageePoint(
-        event.clientX - this.$el.offsetLeft - pointSize,
-        event.clientY - this.$el.offsetTop - pointSize,
-      ))
+      // const drageePoint = new DrageePoint(
+      //   event.clientX - this.$el.offsetLeft - pointSize,
+      //   event.clientY - this.$el.offsetTop - pointSize,
+      // )
+
+      this.points.push({
+        key: `point${this.points.length}`,
+        x: event.clientX - this.$el.offsetLeft - pointSize,
+        y: event.clientY - this.$el.offsetTop - pointSize
+      })
     },
     updatePoint(point) {
       let index = this.points.findIndex((p) => p.key == point.key)

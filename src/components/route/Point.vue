@@ -1,5 +1,5 @@
 <template>
-  <div class="point" v-on:click.stop></div>
+  <div class="point" @click.stop></div>
 </template>
 
 <script>
@@ -18,13 +18,10 @@ export default {
     }
   },
   mounted() {
-    let savePosition = this.savePosition.bind(this)
     this.draggable = new Draggable(this.$el, {
       position: new Point(this.initialX, this.initialY),
       on: {
-        'drag:move': () => {
-          savePosition()
-        }
+        'drag:move': () => this.savePosition()
       }
     })
   },
