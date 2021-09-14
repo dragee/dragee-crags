@@ -7,9 +7,9 @@
            :point-key="point.key"
            @change="updatePoint" />
 
-    <svg width="760" height="570" xmlns="http://www.w3.org/2000/svg">
+    <svg :width="width" :height="height" xmlns="http://www.w3.org/2000/svg">
       <path :d="path"
-            style="stroke:dodgerblue; stroke-width:2; fill:none;" />
+            v-bind:style="pathStyle" />
     </svg>
   </div>
 </template>
@@ -75,6 +75,18 @@ export default {
     initialPoints: {
       type: Array,
       default: () => []
+    },
+    width: {
+      type: Number,
+      default: 760,
+    },
+    height: {
+      type: Number,
+      default: 570,
+    },
+    project: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -85,7 +97,8 @@ export default {
           x: arr[0],
           y: arr[1]
         }
-      })
+      }),
+      highlighted: false
     }
   },
   computed: {
@@ -104,6 +117,18 @@ export default {
       } else {
         return ''
       }
+    },
+    pathStyle() {
+      const color = this.highlighted ? "orange" : "dodgerblue"
+      const width = this.highlighted ? 3 : 2
+      const dashed = this.project ? "30 10" : "100 0"
+
+      return {
+        "stroke": color,
+        "stroke-width": width,
+        "stroke-dasharray": dashed,
+        "fill": "none"
+      }
     }
   },
   methods: {
@@ -118,10 +143,17 @@ export default {
         x: event.clientX - this.$el.offsetLeft - pointSize,
         y: event.clientY - this.$el.offsetTop - pointSize
       })
+      console.log(this.points.map(function(p){ return [p.x, p.y] }))
     },
     updatePoint(point) {
       let index = this.points.findIndex((p) => p.key == point.key)
       Vue.set(this.points, index, point)
+    },
+    highlight() {
+      this.highlighted = true
+    },
+    unhighlight() {
+      this.highlighted = false
     }
   }
 }
