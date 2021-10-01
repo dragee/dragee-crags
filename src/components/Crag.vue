@@ -42,7 +42,7 @@ export default {
     }
   },
   mounted() {
-    this.highlightRoute(4);
+    this.highlightRoute(5);
   },
   methods: {
     highlightRoute(index) {
