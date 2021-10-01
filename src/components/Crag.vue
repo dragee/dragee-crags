@@ -13,6 +13,9 @@
       <tr v-for="(route, index) in crag.routes" :key="index">
         <td @click="highlightRoute(index)" class="link">
           {{ route.name }}
+          <br v-if="route.description">
+          <span v-if="route.description" style="display: inline-block; max-width: 200px; font-size: 12px">
+            {{ route.description }}</span>
         </td>
         <td>
           {{ route.grade }}
