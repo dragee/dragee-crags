@@ -29,6 +29,8 @@ export default {
     savePosition(){
       this.x = this.draggable.position.x
       this.y = this.draggable.position.y
+
+      console.log([this.x, this.y])
       this.$emit('change', {
         key: this.pointKey,
         x: this.x,
