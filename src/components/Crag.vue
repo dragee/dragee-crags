@@ -2,6 +2,7 @@
   <div class="wrapper">
     <div class="crag" v-bind:style="styleObject">
       <Route v-for="(route, index) in crag.routes"
+             :name="route.name"
              :initial-points="route.path"
              :width="crag.width"
              :height="crag.height"
@@ -62,6 +63,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .wrapper {
+  position: relative;
   vertical-align: top;
 }
 
@@ -71,9 +73,15 @@ export default {
 }
 
 table {
+  position: absolute;
   vertical-align: top;
   display: inline-block;
   cursor:  pointer;
+  right: 0;
+  top: 0;
+  background: #fff;
+  border:  2px solid lightblue;
+  z-index: 10;
 }
 
 table .link {

@@ -1,11 +1,13 @@
 <template>
   <div class="route" @click="addPoint">
-    <Point v-for="point in points"
+    <div v-if="$store.state.editable">
+      <Point v-for="point in points"
            :key="point.key"
            :initial-x="point.x"
            :initial-y="point.y"
            :point-key="point.key"
            @change="updatePoint" />
+    </div>
 
     <svg :width="width" :height="height" xmlns="http://www.w3.org/2000/svg">
       <path :d="path"
@@ -18,6 +20,7 @@
 const pointSize = 10
 import Point from './Point.vue'
 import Vue from 'vue'
+import { cragsStore } from '../../store.js'
 
 const line = (pointA, pointB) => {
   const lengthX = pointB[0] - pointA[0]
@@ -68,10 +71,14 @@ const bezierCommand = (point, i, a) => {
 
 export default {
   name: 'Route',
+  store: cragsStore,
   components: {
     Point
   },
   props: {
+    name: {
+      type: String
+    },
     initialPoints: {
       type: Array,
       default: () => []
@@ -133,6 +140,7 @@ export default {
   },
   methods: {
     addPoint(event) {
+      if(!this.$store.state.editable) { return }
       // const drageePoint = new DrageePoint(
       //   event.clientX - this.$el.offsetLeft - pointSize,
       //   event.clientY - this.$el.offsetTop - pointSize,
@@ -148,6 +156,10 @@ export default {
     updatePoint(point) {
       let index = this.points.findIndex((p) => p.key == point.key)
       Vue.set(this.points, index, point)
+      this.$store.dispatch('updateRoute', {
+        name: this.name,
+        path: this.points.map((p) => [p.x, p.y])
+      })
     },
     highlight() {
       this.highlighted = true

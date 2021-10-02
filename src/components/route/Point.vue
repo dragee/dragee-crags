@@ -4,6 +4,7 @@
 
 <script>
 import { Draggable, Point } from 'dragee'
+
 export default {
   name: 'Route',
   props: {
@@ -51,6 +52,5 @@ export default {
   height: 20px;
   border-radius: 30px;
   border: 3px solid green;
-
 }
 </style>
