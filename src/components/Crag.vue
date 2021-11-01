@@ -70,15 +70,16 @@ export default {
 .crag {
   position: relative;
   display: inline-block;
+  max-width: 100%;
 }
 
 table {
-  position: absolute;
+  position: fixed;
   vertical-align: top;
   display: inline-block;
   cursor:  pointer;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 10px;
   background: #fff;
   border:  2px solid lightblue;
   z-index: 10;

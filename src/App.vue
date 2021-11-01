@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="text-align: left;">
+  <div id="app">
     <Crag v-for="(crag, index) in crags" :crag="crag" :key="index" />
     <div id="saveButton" @click="save()" v-if="$store.state.editable">
       Save
@@ -42,9 +42,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   width: 100%;
+  min-width: 1400px;
+  position: relative;
 }
 
 #saveButton {
