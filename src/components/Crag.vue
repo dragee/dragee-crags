@@ -65,6 +65,7 @@ export default {
 .wrapper {
   position: relative;
   vertical-align: top;
+  width: 100%;
 }
 
 .crag {
@@ -74,7 +75,7 @@ export default {
 }
 
 table {
-  position: fixed;
+  position: absolute;
   vertical-align: top;
   display: inline-block;
   cursor:  pointer;
